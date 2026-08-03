@@ -13,7 +13,13 @@ class MessageProcessor:
 
             context = self.context_builder.build_context(message)
 
-            print(
-            context["message"]["message_id"],
-            context["user"]["user_id"]
-          )
+            print("-----------------------")
+            print("Message :", context["message"]["message_id"])
+            print("User    :", context["user"]["user_id"])
+            print("History Messages :", len(context["history"]))
+            
+            if context["group"] is not None:
+                print("Group   :", context["group"]["group_id"])
+
+            if context["business"] is not None:
+              print("Business:", context["business"]["business_id"])
