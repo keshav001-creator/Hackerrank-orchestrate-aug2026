@@ -1,11 +1,15 @@
+from prompt.prompt_builder import PromptBuilder
+
 class DecisionEngine:
 
     def __init__(self):
-        pass
+        self.prompt_builder = PromptBuilder()
+
 
     def make_decision(self, context):
 
-        print("Decision Engine received:",
-              context["message"]["message_id"])
+        prompt = self.prompt_builder.build_prompt(context)
+
+        print(prompt)
 
         return None
