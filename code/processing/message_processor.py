@@ -10,10 +10,14 @@ class MessageProcessor:
 
     def process_messages(self):
 
-        for _, message in self.loader.messages.iterrows():
+        for index, (_, message) in enumerate(self.loader.messages.iterrows()):
 
-            context = self.context_builder.build_context(message)
-            decision = self.decision_engine.make_decision(context)
+             print(index)
+             if index >= 2:
+                 break
+
+             context = self.context_builder.build_context(message)
+             decision = self.decision_engine.make_decision(context)
 
             # print("Decision for message : ", decision)
 
