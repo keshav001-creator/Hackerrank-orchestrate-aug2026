@@ -1,10 +1,12 @@
 from context.context_builder import ContextBuilder
 from decision.decision_engine import DecisionEngine
+from output.csv_writer import CSVWriter
 
 class MessageProcessor:
 
     def __init__(self, loader):
         self.loader = loader
+        self.writer = CSVWriter()
         self.context_builder = ContextBuilder(loader)
         self.decision_engine = DecisionEngine()
 
@@ -13,11 +15,18 @@ class MessageProcessor:
         for index, (_, message) in enumerate(self.loader.messages.iterrows()):
 
              print(index)
-             if index >= 2:
+             if index >= 2: 
                  break
 
              context = self.context_builder.build_context(message)
              decision = self.decision_engine.make_decision(context)
+             
+             self.writer.add_result(
+                 context["message"]["message_id"],
+                 decision
+             )
+
+        self.writer.save()
 
             # print("Decision for message : ", decision)
 

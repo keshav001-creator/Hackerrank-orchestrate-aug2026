@@ -1,0 +1,3 @@
+message_id,action,message_type,reason,confidence,evidence_message_ids
+msg_023,notify,transactional,"The message is an important banking notification from a verified official business (HDFC Bank) regarding the user's account, sent outside the DND window by only a few minutes.",0.9,none
+msg_091,notify,personal,"The message concerns workspace access expiration requiring immediate attention, falling outside the DND window and matching a pattern of urgent operational notifications.",0.92,message_0238

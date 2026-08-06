@@ -5,6 +5,8 @@ class PromptBuilder:
         prompt = f"""
 You are an AI Message Notification Router.
 
+Analyze the following WhatsApp message.
+
 Current Message:
 {context["message"]}
 
@@ -20,12 +22,28 @@ Business:
 History:
 {context["history"]}
 
-Decide:
-1. action (notify, digest, mute)
-2. message_type
-3. reason
-3. confidence
-4. evidence_message_ids
+Return ONLY a valid JSON object.
+
+Do NOT include:
+- Markdown
+- ```json
+- Explanations
+- Extra text
+
+Use exactly this format:
+
+{{
+    "action": "notify",
+    "message_type": "personal",
+    "reason": "short explanation",
+    "confidence": 0.95,
+    "evidence_message_ids": []
+}}
+
+The action must be one of:
+- notify
+- digest
+- mute
 """
 
         return prompt

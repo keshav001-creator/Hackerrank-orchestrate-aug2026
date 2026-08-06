@@ -19,7 +19,7 @@ class GeminiClient:
         #   print(model.name)
 
         self.model = genai.GenerativeModel(
-            "gemini-2.0-flash-lite"
+            "gemini-3.5-flash-lite"
         )
 
     def generate(self, prompt):
