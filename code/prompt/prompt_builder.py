@@ -2,48 +2,54 @@ class PromptBuilder:
 
     def build_prompt(self, context):
 
+        message = context["message"]
+        user = context["user"]
+        group = context["group"]
+        business = context["business"]
+
         prompt = f"""
 You are an AI Message Notification Router.
 
-Analyze the following WhatsApp message.
+Analyze the WhatsApp message below.
 
-Current Message:
-{context["message"]}
+CURRENT MESSAGE
+---------------
+Message ID: {message["message_id"]}
+Conversation Type: {message["conversation_type"]}
+Sender Type: {message["sender_type"]}
+Text: {message["message_text"]}
+Timestamp: {message["timestamp"]}
+Forward Count: {message["forwarded_count"]}
 
-User:
-{context["user"]}
+USER
+----
+User ID: {user["user_id"]}
+Do Not Disturb: {user["do_not_disturb_window"]}
 
-Group:
-{context["group"]}
+GROUP
+-----
+{group}
 
-Business:
-{context["business"]}
+BUSINESS
+--------
+{business}
 
-History:
-{context["history"]}
+HISTORY
+-------
+{len(context["history"])} previous related messages found.
 
-Return ONLY a valid JSON object.
+TASK
+----
+Decide:
 
-Do NOT include:
-- Markdown
-- ```json
-- Explanations
-- Extra text
+1. action → notify, digest or mute
+2. message_type
+3. reason
+4. confidence
+5. evidence_message_ids
 
-Use exactly this format:
-
-{{
-    "action": "notify",
-    "message_type": "personal",
-    "reason": "short explanation",
-    "confidence": 0.95,
-    "evidence_message_ids": []
-}}
-
-The action must be one of:
-- notify
-- digest
-- mute
+Return ONLY valid JSON.
+Do not return markdown or explanations.
 """
 
         return prompt
