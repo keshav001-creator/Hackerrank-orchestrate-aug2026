@@ -1,7 +1,10 @@
+from media.media_processor import MediaProcessor
+
 class ContextBuilder:
 
     def __init__(self, loader):
         self.loader = loader
+        self.media_processor = MediaProcessor(loader)
 
     def build_context(self, message):
 
@@ -35,10 +38,13 @@ class ContextBuilder:
             if not business_data.empty:
                 business = business_data.iloc[0]
 
+        media = self.media_processor.process(message)
+
         return {
             "message": message,
             "user": user,
             "history": history,
             "group": group,
-            "business": business
+            "business": business,
+            "media": media
         }

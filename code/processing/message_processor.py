@@ -15,10 +15,13 @@ class MessageProcessor:
         for index, (_, message) in enumerate(self.loader.messages.iterrows()):
 
              print(index)
-             if index >= 2: 
+             if index >= 7: 
                  break
 
              context = self.context_builder.build_context(message)
+
+             print("MEDIA:", context["media"])
+
              decision = self.decision_engine.make_decision(context)
              
              self.writer.add_result(

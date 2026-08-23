@@ -18,6 +18,7 @@ Sender User ID: {message["sender_user_id"]}
 Created At: {message["created_at"]}
 Message: {message["message_text"]}
 Media Type: {message["media_type"]}
+Media ID: {message["media_id"]}
 Forwarded Count: {message["forwarded_count"]}
 
 USER
