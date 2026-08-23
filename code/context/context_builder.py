@@ -10,7 +10,8 @@ class ContextBuilder:
         ].iloc[0]
 
         history = self.loader.message_history[
-            self.loader.message_history["user_id"] == message["user_id"]
+        (self.loader.message_history["user_id"] == message["user_id"]) &
+        (self.loader.message_history["message_id"] != message["message_id"])
         ].tail(5)
 
         group = None
