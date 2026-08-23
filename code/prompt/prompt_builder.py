@@ -10,16 +10,15 @@ class PromptBuilder:
         prompt = f"""
 You are an AI Message Notification Router.
 
-Analyze the WhatsApp message below.
-
 CURRENT MESSAGE
 ---------------
 Message ID: {message["message_id"]}
 Conversation Type: {message["conversation_type"]}
-Sender Type: {message["sender_type"]}
-Text: {message["message_text"]}
-Timestamp: {message["timestamp"]}
-Forward Count: {message["forwarded_count"]}
+Sender User ID: {message["sender_user_id"]}
+Created At: {message["created_at"]}
+Message: {message["message_text"]}
+Media Type: {message["media_type"]}
+Forwarded Count: {message["forwarded_count"]}
 
 USER
 ----
@@ -36,20 +35,18 @@ BUSINESS
 
 HISTORY
 -------
-{len(context["history"])} previous related messages found.
+{context["history"]}
 
 TASK
 ----
-Decide:
-
-1. action → notify, digest or mute
-2. message_type
-3. reason
-4. confidence
-5. evidence_message_ids
-
 Return ONLY valid JSON.
-Do not return markdown or explanations.
+
+Fields:
+- action (notify, digest, mute)
+- message_type
+- reason
+- confidence
+- evidence_message_ids
 """
 
         return prompt

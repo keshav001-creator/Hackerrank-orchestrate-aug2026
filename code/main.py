@@ -5,10 +5,12 @@ def main():
     loader = DataLoader()
 
     loader.load_all()
+    # print(list(loader.messages.columns))
 
     processor = MessageProcessor(loader)
     processor.process_messages()
-    
+
+        
 
 
 if __name__ == "__main__":
